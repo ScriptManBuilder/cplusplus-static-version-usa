@@ -12,6 +12,32 @@ export const GlobalStyles = createGlobalStyle`
     100% { transform: rotate(360deg); }
   }
 
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Анимации для контента после завершения загрузки */
+  body.initial-load-complete {
+    .App > main {
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    header {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    footer {
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+  }
+
   html {
     /* Prevent horizontal scrolling */
     overflow-x: hidden;

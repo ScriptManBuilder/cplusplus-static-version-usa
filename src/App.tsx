@@ -7,9 +7,11 @@ import { CartProvider } from './contexts/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { useServiceWorker } from './hooks/useServiceWorker';
 import { useAuth } from './contexts/AuthContext';
+import { useInitialLoader } from './hooks/useInitialLoader';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LoadingFallback from './components/LazyLoading';
+import InitialLoader from './components/InitialLoader';
 
 // Основные компоненты с ленивой загрузкой
 const LazyHome = React.lazy(() => import('./pages/Home'));
@@ -34,6 +36,19 @@ const LazyBlog = React.lazy(() => import('./pages/Blog'));
 function App() {
   // Регистрируем Service Worker для кэширования
   useServiceWorker();
+
+  // Инициальный лоадер для лучшей прогрузки видео
+  const { isInitialLoading, loadingProgress } = useInitialLoader();
+
+  // Показываем инициальный лоадер при первом заходе
+  if (isInitialLoading) {
+    return (
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyles />
+        <InitialLoader progress={loadingProgress} />
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>

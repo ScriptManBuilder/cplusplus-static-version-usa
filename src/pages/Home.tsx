@@ -346,7 +346,8 @@ const Home: React.FC = () => {
           muted 
           loop 
           playsInline
-          preload="auto"
+          preload="metadata"
+          data-preload="true"
         >
           <source src="/videos/Video_AI_1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -475,7 +476,8 @@ const Home: React.FC = () => {
             muted 
             loop 
             playsInline
-            preload="none"
+            preload="metadata"
+            data-preload="true"
           >
             <source src="/videos/videoAI_2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
